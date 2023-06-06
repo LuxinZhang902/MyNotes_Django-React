@@ -36,7 +36,27 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
     })
   }
 
+  let deleteNote = async () => {
+    let url = 'http://localhost:8000/notes/' + id
+    await fetch(url, {
+      method: 'DELETE',
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...note, 'updated': new Date()})
+    })
+    navigate('/')
+  }
+
   let handleSubmit = () => {
+
+    if(id !== 'new' && !note.body){
+      deleteNote()
+    }
+    else if(id === 'new'){
+      updataNote()
+    }
+
     updataNote()
     navigate('/')
   }
@@ -50,6 +70,8 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
             <ArrowLeft onClick={handleSubmit}/>
           </Link>
         </h3>
+
+        <button onClick={deleteNote}> Delete </button>
       </div>
 
       <textarea onChange={(e) => {setNote({...note, 'body': e.target.value})}} value={note?.body}>
