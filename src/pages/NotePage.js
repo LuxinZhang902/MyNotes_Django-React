@@ -19,11 +19,27 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
   }, [id])
 
   let getNote = async () => {
+    if(id === 'new'){
+      return
+    }
     let url = 'http://localhost:8000/notes/' + id
     let response = await fetch(url)
     let data = await response.json()
     setNote(data)
   }
+
+  let createNote = async () => {
+    console.log('Create Note')
+    let url = 'http://localhost:8000/notes/'
+    await fetch(url, {
+      method: 'POST',
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...note, 'updated': new Date()})
+    })
+  }
+
 
   let updataNote = async () => {
     let url = 'http://localhost:8000/notes/' + id
@@ -48,16 +64,20 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
     navigate('/')
   }
 
+
+  
   let handleSubmit = () => {
 
     if(id !== 'new' && !note.body){
       deleteNote()
     }
-    else if(id === 'new'){
+    else if(id !== 'new'){
       updataNote()
     }
+    else if(id === 'new' && note !== null){
+      createNote()
+    }
 
-    updataNote()
     navigate('/')
   }
 
@@ -71,7 +91,12 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
           </Link>
         </h3>
 
-        <button onClick={deleteNote}> Delete </button>
+        {id !== 'new' ? ( 
+           <button onClick={deleteNote} className='note-header'> Delete </button>
+        ): (
+          <button onClick={handleSubmit} className='note-header'> Done </button>
+        )}
+
       </div>
 
       <textarea onChange={(e) => {setNote({...note, 'body': e.target.value})}} value={note?.body}>
