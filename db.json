@@ -1,23 +1,19 @@
 {
   "notes": [
     {
-        "id": 1,
-        "body": "Todays Agenda\n\n- Wake Up\n- Eat Lunch\n- Take Nap\n- Get Bed Early",
-        "updated": "2021-07-14T13:49:02.078653Z",
-        "created": "2021-07-13T21:54:16.235392Z"
+      "id": 1,
+      "body": "Daily\n- Get Up\n- Take a Nap\n- Eat Dinner\n- Get to the Bed Early",
+      "updated": "2023-06-06T21:05:56.712Z"
     },
     {
-        "id": 2,
-        "body": "Bob from bar down the \n\n- Take out trash\n- Eat food",
-        "updated": "2021-07-13T20:43:18.550058Z",
-        "created": "2021-07-13T00:17:13.289897Z"
+      "id": 2,
+      "updated": "2023-06-06T21:06:23.476Z",
+      "body": "Finish the Project\n- JS Part\n- Backen-end Django part\n- Debug"
     },
     {
-        "id": 3,
-        "body": "Wash car",
-        "updated": "2021-07-13T19:46:12.187306Z",
-        "created": "2021-07-13T00:16:22.399841Z"
+      "id": 3,
+      "updated": "2023-06-06T21:09:36.845Z",
+      "body": "\n-  Do some exercises\n- Drink water"
     }
-]
-
+  ]
 }
