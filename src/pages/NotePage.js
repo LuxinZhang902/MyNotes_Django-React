@@ -22,7 +22,7 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
     if(id === 'new'){
       return
     }
-    let url = 'http://localhost:8000/notes/' + id
+    let url = '/api/notes/' + id
     let response = await fetch(url)
     let data = await response.json()
     setNote(data)
@@ -42,18 +42,18 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
 
   let updataNote = async () => {
-    let url = 'http://localhost:8000/notes/' + id
+    let url = '/api/notes/' + id + '/update/'
     await fetch(url, {
       method: 'PUT',
       headers:{
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({...note, 'updated': new Date()})
+      body: JSON.stringify(note)
     })
   }
 
   let deleteNote = async () => {
-    let url = 'http://localhost:8000/notes/' + id
+    let url = '/api/notes/' + id + '/delete/'
     await fetch(url, {
       method: 'DELETE',
       headers:{
@@ -84,7 +84,8 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
   
   return (
     <div className='note'>
-      <div className='nots-header'>
+      {/* <h1>{id}</h1> */}
+      <div className='notes-header'>
         <h3>
           <Link to="/">
             <ArrowLeft onClick={handleSubmit}/>
@@ -92,9 +93,9 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
         </h3>
 
         {id !== 'new' ? ( 
-           <button onClick={deleteNote} className='note-header'> Delete </button>
+           <button onClick={deleteNote} className='notes-header'> Delete </button>
         ): (
-          <button onClick={handleSubmit} className='note-header'> Done </button>
+          <button onClick={handleSubmit} className='notes-header'> Done </button>
         )}
 
       </div>
